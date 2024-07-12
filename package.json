@@ -46,5 +46,6 @@
     "@arguments": "dist/arguments",
     "@lib": "dist/lib",
     "@data": "dist/data"
-  }
+  },
+  "nodeVersion": "21.6.2"
 }
