@@ -12,7 +12,7 @@
     "generate": "sapphire generate",
     "build": "tsc",
     "watch": "tsc -w",
-    "start": "tsc && node dist/index.js",
+    "start": "node dist/index.js",
     "dev": "run-s build start",
     "watch:start": "tsc-watch --onSuccess \"npm run start\"",
     "format": "prettier --write \"src/**/*.ts\""
@@ -46,6 +46,5 @@
     "@arguments": "dist/arguments",
     "@lib": "dist/lib",
     "@data": "dist/data"
-  },
-  "nodeVersion": "21.6.2"
+  }
 }
