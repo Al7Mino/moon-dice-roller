@@ -33,7 +33,7 @@ jobs:
           context: .
           file: ./docker/Dockerfile
           push: true
-          tags: ghcr.io/Al7Mino/moon-dice-roller:latest
+          tags: user/app:latest
           
       - name: Deploying using ssh
         uses: appleboy/ssh-action@v1.0.3
