@@ -1,21 +1,40 @@
-FROM node:21-alpine as build
+FROM node:22-alpine as base
 
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+COPY . /app
 WORKDIR /app
 
-COPY . .
+FROM base AS prod-deps
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
-RUN pnpm install
-
+FROM base AS build
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 RUN pnpm run build
 
-FROM node:21-alpine
-
-WORKDIR /app
-
-COPY package.json .
-COPY pnpm-lock.yaml .
-
-RUN pnpm install
-
+FROM base
+COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/dist /app/dist
-CMD ["node", "dist/index.js"]
+EXPOSE 8000
+CMD [ "pnpm", "start" ]
+
+# WORKDIR /app
+
+# COPY . .
+
+# RUN pnpm install
+
+# RUN pnpm run build
+
+# FROM node:21-alpine
+
+# WORKDIR /app
+
+# COPY package.json .
+# COPY pnpm-lock.yaml .
+
+# RUN pnpm install
+
+# COPY --from=build /app/dist /app/dist
+# CMD ["node", "dist/index.js"]
