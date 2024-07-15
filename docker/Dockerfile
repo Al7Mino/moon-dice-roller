@@ -18,23 +18,3 @@ COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/dist /app/dist
 EXPOSE 8000
 CMD [ "pnpm", "start" ]
-
-# WORKDIR /app
-
-# COPY . .
-
-# RUN pnpm install
-
-# RUN pnpm run build
-
-# FROM node:21-alpine
-
-# WORKDIR /app
-
-# COPY package.json .
-# COPY pnpm-lock.yaml .
-
-# RUN pnpm install
-
-# COPY --from=build /app/dist /app/dist
-# CMD ["node", "dist/index.js"]
