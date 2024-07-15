@@ -28,6 +28,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
+          file: ./docker/Dockerfile
           push: true
           tags: Al7Mino/moon-dice-roller:latest
           
