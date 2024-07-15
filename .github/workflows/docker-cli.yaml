@@ -26,6 +26,13 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ github.repository }}
+          tags: latest
           
       - name: Build and push
         uses: docker/build-push-action@v6
@@ -33,7 +40,7 @@ jobs:
           context: .
           file: ./docker/Dockerfile
           push: true
-          tags: ghcr.io/Al7Mino/moon-dice-roller:latest
+          tags: ${{ steps.meta.outputs.tags }}
           
       - name: Deploying using ssh
         uses: appleboy/ssh-action@v1.0.3
@@ -43,7 +50,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            docker image pull Al7Mino/$APP_NAME:latest
+            docker image pull ${{ steps.meta.outputs.tags }}
             docker container stop moonlight
             docker container rm moonlight
             docker container run -d --name moonlight -p 80:5000 Al7Mino/$APP_NAME
