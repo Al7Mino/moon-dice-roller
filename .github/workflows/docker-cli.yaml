@@ -41,6 +41,6 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             docker image pull ghcr.io/al7mino/moon-dice-roller:latest
-            docker container stop moonlight
-            docker container rm moonlight
-            docker container run -d --name moonlight -p 80:5000 al7mino/moon-dice-roller
+            docker container stop moon-dice-roller
+            docker container rm moon-dice-roller
+            docker container run -d --name moon-dice-roller -p 80:5000 al7mino/moon-dice-roller
