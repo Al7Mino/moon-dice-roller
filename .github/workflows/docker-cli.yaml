@@ -39,7 +39,7 @@ jobs:
           script: |
             docker stop moon-dice-roller
             docker system prune
-            docker login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io/v2/al7mino/moon-dice-roller/manifests/latest -u ${{ github.actor }} --password-stdin
             docker image pull ghcr.io/al7mino/moon-dice-roller:latest
             docker image tag ghcr.io/al7mino/moon-dice-roller:latest moon-dice-roller:latest
             docker run -d moon-dice-roller -e TOKEN=${{ secrets.DISCORD_TOKEN }}
