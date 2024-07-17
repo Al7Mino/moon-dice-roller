@@ -41,5 +41,4 @@ jobs:
             docker system prune
             echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io/v2/al7mino/moon-dice-roller/manifests/latest -u ${{ github.actor }} --password-stdin
             docker image pull ghcr.io/al7mino/moon-dice-roller:latest
-            docker image tag ghcr.io/al7mino/moon-dice-roller:latest moon-dice-roller:latest
-            docker run -d moon-dice-roller -e TOKEN=${{ secrets.DISCORD_TOKEN }}
+            docker run -d -e TOKEN=${{ secrets.DISCORD_TOKEN }} --name moon-dice-roller ghcr.io/al7mino/moon-dice-roller:latest
