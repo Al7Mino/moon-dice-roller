@@ -8,7 +8,7 @@ export default class DiceRollExpression {
     this.expressionArray = expressionArray;
   }
 
-  static isDiceRollExpression(value: any): boolean {
+  static isDiceRollExpression(value: any): value is DiceRollExpression {
     return value instanceof DiceRollExpression;
   }
 
