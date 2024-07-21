@@ -5,7 +5,7 @@ import { APIEmbedField, BaseMessageOptions, Message, EmbedBuilder, ApplicationCo
 import { splitMessage } from '@lib/utils';
 
 @ApplyOptions<Command.Options>({
-  description: 'Informations sur l\'utilisation de LudiBot',
+  description: 'Informations sur l\'utilisation de MoonDiceRoller',
   detailedDescription: `Présente l'aide pour le bot ou une commande spécifique.\n
   __Utilisation__
   \`!help [command]\`\n
@@ -111,8 +111,7 @@ export class HelpCommand extends Command {
 
     const embed = new EmbedBuilder({
       color: 13836804,
-      description: `LudiBot est le bot Discord de Ludisep, le club de jeu de l'ISEP.
-      Pour en apprendre davantage, visitez le site [Ludisep](https://ludisep.fr).\n
+      description: `MoonDiceRoller est un bot de jet de dés.\n
       Pour en apprendre plus sur une commande spécifique, utiliser la commande \`help [command]\`.`,
       fields,
     });

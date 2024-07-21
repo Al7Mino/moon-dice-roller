@@ -198,6 +198,14 @@ export class DiceRollCommand extends Command {
     const hasDetails = interaction.options.getBoolean('details');
     const repeat = interaction.options.getInteger('repeat');
 
+    const matches = expression.match(new RegExp(`^${coreRollExpressionRegex.source}`, 'i'));
+    if (!matches) {
+      return await interaction.reply({
+        content: `La valeur pour \`dices\` : \`${expression}\` n'a pas pu être correctement interprété. Veuillez vérifier que la valeur de l'expression est correcte.`,
+        ephemeral: true,
+      });
+    }
+
     const content = this.buildResultDiceRoll(expression, label, hasDetails, repeat);
     return await interaction.reply({
       content,
