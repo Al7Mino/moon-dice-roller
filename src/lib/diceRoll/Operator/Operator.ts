@@ -3,6 +3,10 @@ import type { Operation } from '../types';
 import type { Selector } from '../Selector';
 import type Dice from '../Dice';
 
+/**
+ * Class representing an operator.\
+ * An operator defines the operation to proceed on values filtered by a `selector`.
+ */
 export default abstract class Operator {
   abstract selector: Selector;
 

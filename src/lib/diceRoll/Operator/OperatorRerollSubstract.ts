@@ -4,6 +4,10 @@ import Operator from './Operator';
 import type { Selector } from '../Selector';
 import type Dice from '../Dice';
 
+/**
+ * Class representing a reroll and substract operator.\
+ * A reroll and substract operator is used to reroll the first value from a given list filtered by the `selector`, then substract the value of the new roll.
+ */
 export default class OperatorRerollSubstract extends Operator {
   selector: Selector;
 

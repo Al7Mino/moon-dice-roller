@@ -3,6 +3,10 @@ import type { Operation } from '../types';
 import Operator from './Operator';
 import type { Selector } from '../Selector';
 
+/**
+ * Class representing a drop operator.\
+ * A drop operator is used to drop all values from a given list that are filtered by the `selector`.
+ */
 export default class OperatorDrop extends Operator {
   selector: Selector;
 

@@ -1,6 +1,10 @@
 import { selectorLowestRegex } from '../regex';
 import Selector from './Selector';
 
+/**
+ * Class representing a lowest selector.\
+ * A lowest selector is used to keep the lowest values from a given list. The number of lowest values to keep is the selector's `value`.
+ */
 export default class SelectorLowest extends Selector {
   value: number;
 

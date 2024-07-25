@@ -1,6 +1,10 @@
 import { selectorHighestRegex } from '../regex';
 import Selector from './Selector';
 
+/**
+ * Class representing a highest selector.\
+ * A highest selector is used to keep the highest values from a given list. The number of highest values to keep is the selector's `value`.
+ */
 export default class SelectorHighest extends Selector {
   value: number;
 

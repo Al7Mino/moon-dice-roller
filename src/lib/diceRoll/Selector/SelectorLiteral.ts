@@ -1,6 +1,10 @@
 import { selectorLiteralRegex } from '../regex';
 import Selector from './Selector';
 
+/**
+ * Class representing a literal selector.\
+ * A literal selector is used to keep all values from a given list that are equal to the selector's `value`.
+ */
 export default class SelectorLiteral extends Selector {
   value: number;
 

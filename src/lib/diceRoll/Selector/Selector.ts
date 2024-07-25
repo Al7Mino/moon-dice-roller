@@ -1,5 +1,9 @@
 import { selectorRegex } from '../regex';
 
+/**
+ * Class representing a selector.\
+ * A selector defines the way a list of values will be filtered.
+ */
 export default abstract class Selector {
   abstract value: number;
 

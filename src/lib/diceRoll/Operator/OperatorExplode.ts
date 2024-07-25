@@ -5,6 +5,14 @@ import Operator from './Operator';
 import type { Selector } from '../Selector';
 import type Dice from '../Dice';
 
+/**
+ * Class representing an explode operator.\
+ * An explode operator is used to explode values from a given list filtered by the `selector`.
+ * A dice explodes means a new dice is rolled.\
+ * An exploding dice can also explodes.
+ * 
+ * *A limit to the number of reroll is set to prevent infinite loop.*
+ */
 export default class OperatorExplode extends Operator {
   selector: Selector;
   private readonly limit: number = 30;
