@@ -38,6 +38,6 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io/v2/al7mino/moon-dice-roller/manifests/latest -u ${{ github.actor }} --password-stdin
-            dc build
-            dc up -d
+            docker compose -f /workspace/compose.yaml build
+            docker compose -f /workspace/compose.yaml up -d
             docker system prune -f
