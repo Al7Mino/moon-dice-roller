@@ -38,5 +38,4 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             docker system prune -f
-            docker compose -f ~/workspace/compose.yaml build
             docker compose -f ~/workspace/compose.yaml up -d
