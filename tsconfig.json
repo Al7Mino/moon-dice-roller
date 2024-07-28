@@ -12,5 +12,6 @@
 		},
 		"skipLibCheck": true // Workaround caused by types problem in discord.js and sapphire libraries
 	},
-	"include": ["src"]
+	"include": ["src", "tests/global.d.ts"],
+	"files": ["tests/global.d.ts"]
 }

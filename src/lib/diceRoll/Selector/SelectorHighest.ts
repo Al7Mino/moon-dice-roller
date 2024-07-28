@@ -10,7 +10,7 @@ export default class SelectorHighest extends Selector {
 
   constructor(value: number) {
     super();
-    this.value = value;
+    this.value = Math.floor(value);
   }
 
   static isValidSelectorHighestExpression(value: string): boolean {
@@ -19,6 +19,9 @@ export default class SelectorHighest extends Selector {
   }
 
   private filterNMax(array: {value: number, index: number}[], n: number): {value: number, index: number}[] {
+    if (n < 1) {
+      return [];
+    }
     const maxValues: {value: number, index: number}[] = [];
     for (const element of array) {
       if (maxValues.length < n) {
@@ -26,7 +29,10 @@ export default class SelectorHighest extends Selector {
       } else {
         const min = Math.min(...maxValues.map((val) => val.value));
         if (element.value > min) {
-          const minIndex = maxValues.findIndex((val) => val.value === min);
+          // Reverse max values to get the last index (instead of first)
+          // This way, it's easier to know what happened
+          const reversedMinIndex = maxValues.toReversed().findIndex((val) => val.value === min);
+          const minIndex = Math.abs(reversedMinIndex - maxValues.length + 1);
           maxValues.splice(minIndex, 1, element);
         }
       }

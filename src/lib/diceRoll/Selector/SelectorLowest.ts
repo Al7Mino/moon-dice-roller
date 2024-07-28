@@ -10,7 +10,7 @@ export default class SelectorLowest extends Selector {
 
   constructor(value: number) {
     super();
-    this.value = value;
+    this.value = Math.floor(value);
   }
 
   static isValidSelectorLowestExpression(value: string): boolean {
@@ -19,6 +19,9 @@ export default class SelectorLowest extends Selector {
   }
 
   private filterNMin(array: {value: number, index: number}[], n: number): {value: number, index: number}[] {
+    if (n < 1) {
+      return [];
+    }
     const minValues: {value: number, index: number}[] = [];
     for (const element of array) {
       if (minValues.length < n) {
@@ -26,7 +29,10 @@ export default class SelectorLowest extends Selector {
       } else {
         const max = Math.max(...minValues.map((val) => val.value));
         if (element.value < max) {
-          const maxIndex = minValues.findIndex((val) => val.value === max);
+          // Reverse max values to get the last index (instead of first)
+          // This way, it's easier to know what happened
+          const reversedMaxIndex = minValues.toReversed().findIndex((val) => val.value === max);
+          const maxIndex = Math.abs(reversedMaxIndex - minValues.length + 1);
           minValues.splice(maxIndex, 1, element);
         }
       }

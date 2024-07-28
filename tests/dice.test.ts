@@ -12,45 +12,33 @@ const negativeDiceString = "-3d-10";
 const negativeDice = new Dice(-10, -3);
 
 describe("Validity of several dice value expressions", () => {
-    test("\"2d20\" string is not a valid Dice", () => {
-        expect(Dice.isDice(diceString)).toBeFalsy();
+    describe("Check Dice.isValidDiceExpression", () => {
+        test.each([
+            [diceString, true],
+            [zeroSideDiceString, false],
+            [zeroNumDiceString, false],
+            [floatDiceString, false],
+            [negativeDiceString, false],
+        ])("%s is %s", (value, expected) => {
+            expected ? expect(Dice.isValidDiceExpression(value)).toBeTruthy() : expect(Dice.isValidDiceExpression(value)).toBeFalsy();
+        });
     });
 
-    test("Dice \"2d20\" is a valid Dice", () => {
-        expect(Dice.isDice(regularDice)).toBeTruthy();
-    });
-
-    test("Dice \"2d0\" is a valid Dice, convert to dice \"2d6\"", () => {
-        expect(Dice.isDice(zeroSideDice)).toBeTruthy();
-        expect(zeroSideDice.sides).toBe(6);
-    });
-    test("\"2d0\" is not a valid dice expression", () => {
-        expect(Dice.isValidDiceExpression(zeroSideDiceString)).toBeFalsy();
-    });
-
-    test("Dice \"0d20\" is a valid Dice, convert to dice \"1d20\"", () => {
-        expect(Dice.isDice(zeroNumDice)).toBeTruthy();
-        expect(zeroNumDice.num).toBe(1);
-    });
-    test("\"0d20\" is not a valid dice expression", () => {
-        expect(Dice.isValidDiceExpression(zeroNumDiceString)).toBeFalsy();
-    });
-
-    test("Dice \"1.2d10.6\" is a valid Dice, convert to dice \"1d10\"", () => {
-        expect(Dice.isDice(floatDice)).toBeTruthy();
-        expect(floatDice.num).toBe(1);
-        expect(floatDice.sides).toBe(10);
-    });
-    test("\"1.2d10.6\" is not a valid dice expression", () => {
-        expect(Dice.isValidDiceExpression(floatDiceString)).toBeFalsy();
-    });
-
-    test("Dice \"-3d-10\" is a valid Dice, convert to default dice \"1d6\"", () => {
-        expect(Dice.isDice(negativeDice)).toBeTruthy();
-        expect(negativeDice.num).toBe(1);
-        expect(negativeDice.sides).toBe(6);
-    });
-    test("\"-3d-10\" is not a valid dice expression", () => {
-        expect(Dice.isValidDiceExpression(negativeDiceString)).toBeFalsy();
+    describe("Check Dice.isDice", () => {
+        test.each([
+            {label: diceString, value: regularDice, expected: true, num: 2, sides: 20},
+            {label: zeroSideDiceString, value: zeroSideDice, expected: true, num: 2, sides: 6},
+            {label: zeroNumDiceString, value: zeroNumDice, expected: true, num: 1, sides: 20},
+            {label: floatDiceString, value: floatDice, expected: true, num: 1, sides: 10},
+            {label: negativeDiceString, value: negativeDice, expected: true, num: 1, sides: 6},
+        ])("Dice $label is $expected, with num = $num and sides = $sides", ({value, expected, num, sides}) => {
+            expected ? expect(Dice.isDice(value)).toBeTruthy() : expect(Dice.isDice(value)).toBeFalsy();
+            if (num !== undefined) {
+                expect(value.num).toBe(num);
+            }
+            if (sides !== undefined) {
+                expect(value.sides).toBe(sides);
+            }
+        });
     });
 });

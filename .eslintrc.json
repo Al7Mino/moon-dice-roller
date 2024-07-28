@@ -54,7 +54,7 @@
 	"overrides": [
 		{
 			"files": ["tests/**/*"],
-			"plugins": ["jest"],
+			"plugins": ["jest", "jest-extended"],
 			"env": {
 				"jest/globals": true
 			}
