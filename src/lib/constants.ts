@@ -1,13 +1,13 @@
-import { join } from 'path';
+import { join } from "path";
 
-export const rootDir = join(__dirname, '..', '..');
-export const srcDir = join(rootDir, 'src');
+export const rootDir = join(__dirname, "..", "..");
+export const srcDir = join(rootDir, "src");
 
-export const RandomLoadingMessage = ['Computing...', 'Thinking...', 'Cooking some food', 'Give me a moment', 'Loading...'];
+export const RandomLoadingMessage = ["Computing...", "Thinking...", "Cooking some food", "Give me a moment", "Loading..."];
 
 /*
-* Message limits
-*/
+ * Message limits
+ */
 
 /** Discord message content limited to 2000 characters */
 export const MessageContentLimit = 2000;
@@ -17,8 +17,8 @@ export const MessageNbEmbedsLimit = 10;
 export const EmbedBuildersLimit = 6000;
 
 /*
-* Embeds limits
-*/
+ * Embeds limits
+ */
 
 /** Discord embed title limited to 256 characters */
 export const EmbedTitleLimit = 256;

@@ -1,53 +1,53 @@
-import { selectorLowestRegex } from '../regex';
-import Selector from './Selector';
+import { selectorLowestRegex } from "../regex";
+import Selector from "./Selector";
 
 /**
  * Class representing a lowest selector.\
  * A lowest selector is used to keep the lowest values from a given list. The number of lowest values to keep is the selector's `value`.
  */
 export default class SelectorLowest extends Selector {
-  value: number;
+	value: number;
 
-  constructor(value: number) {
-    super();
-    this.value = Math.floor(value);
-  }
+	constructor(value: number) {
+		super();
+		this.value = Math.floor(value);
+	}
 
-  static isValidSelectorLowestExpression(value: string): boolean {
-    const regex = new RegExp(`^${selectorLowestRegex.source}$`, 'i');
-    return regex.test(value);
-  }
+	static isValidSelectorLowestExpression(value: string): boolean {
+		const regex = new RegExp(`^${selectorLowestRegex.source}$`, "i");
+		return regex.test(value);
+	}
 
-  private filterNMin(array: {value: number, index: number}[], n: number): {value: number, index: number}[] {
-    if (n < 1) {
-      return [];
-    }
-    const minValues: {value: number, index: number}[] = [];
-    for (const element of array) {
-      if (minValues.length < n) {
-        minValues.push(element);
-      } else {
-        const max = Math.max(...minValues.map((val) => val.value));
-        if (element.value < max) {
-          const maxIndex = minValues.findLastIndex((val) => val.value === max);
-          minValues.splice(maxIndex, 1, element);
-        }
-      }
-    }
-    return minValues.sort((a, b) => a.index - b.index);
-  }
+	private filterNMin(array: { value: number; index: number }[], n: number): { value: number; index: number }[] {
+		if (n < 1) {
+			return [];
+		}
+		const minValues: { value: number; index: number }[] = [];
+		for (const element of array) {
+			if (minValues.length < n) {
+				minValues.push(element);
+			} else {
+				const max = Math.max(...minValues.map((val) => val.value));
+				if (element.value < max) {
+					const maxIndex = minValues.findLastIndex((val) => val.value === max);
+					minValues.splice(maxIndex, 1, element);
+				}
+			}
+		}
+		return minValues.sort((a, b) => a.index - b.index);
+	}
 
-  filter(dices: number[]): {value: number, index: number}[] {
-    const mappedDices = dices.map((dice, index) => ({
-      value: dice,
-      index,
-    }));
-    const results = this.filterNMin(mappedDices, this.value);
+	filter(dices: number[]): { value: number; index: number }[] {
+		const mappedDices = dices.map((dice, index) => ({
+			value: dice,
+			index,
+		}));
+		const results = this.filterNMin(mappedDices, this.value);
 
-    return results;
-  }
+		return results;
+	}
 
-  toString(): string {
-    return `l${this.value}`;
-  }
+	toString(): string {
+		return `l${this.value}`;
+	}
 }

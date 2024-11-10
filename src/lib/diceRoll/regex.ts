@@ -9,11 +9,11 @@ const swSidesRegex = /sw/i;
 const siSw = swSidesRegex.source;
 
 // Regex (ex: 10dsw)
-const swDiceRegex = new RegExp(`([1-9]\\d*)?d${siSw}`, 'i');
+const swDiceRegex = new RegExp(`([1-9]\\d*)?d${siSw}`, "i");
 const dsw = swDiceRegex.source;
 
 // Regex (ex: 3d6, d20, d%, 10dsw)
-export const diceRegex = new RegExp(`([1-9]\\d*)?d(([1-9]\\d*)|${siP}|${siSw})`, 'i');
+export const diceRegex = new RegExp(`([1-9]\\d*)?d(([1-9]\\d*)|${siP}|${siSw})`, "i");
 const ds = diceRegex.source;
 
 //
@@ -60,7 +60,7 @@ const oma = operatorMaximumRegex.source;
 export const operatorWildDiceRegex = /wl/i;
 const owild = operatorWildDiceRegex.source;
 
-export const operatorRegex = new RegExp(`${ok}|${od}|${orr}|${oro}|${ora}|${ors}|${oe}|${omi}|${oma}|${owild}`, 'i');
+export const operatorRegex = new RegExp(`${ok}|${od}|${orr}|${oro}|${ora}|${ors}|${oe}|${omi}|${oma}|${owild}`, "i");
 const os = operatorRegex.source;
 
 //
@@ -87,20 +87,20 @@ const sgt = selectorGreaterRegex.source;
 export const selectorLowerRegex = /(<[1-9]\d*)/i;
 const slt = selectorLowerRegex.source;
 
-export const selectorRegex = new RegExp(`${sh}|${slo}|${sgt}|${slt}|${sl}`, 'i');
+export const selectorRegex = new RegExp(`${sh}|${slo}|${sgt}|${slt}|${sl}`, "i");
 const slcts = selectorRegex.source;
 
 // Regex (ex: k2, kh1)
-export const operatorWithSelectorRegex = new RegExp(`(${os})(${slcts})`, 'i');
+export const operatorWithSelectorRegex = new RegExp(`(${os})(${slcts})`, "i");
 const ows = operatorWithSelectorRegex.source;
 
 // Regex (ex: 3d6, 2d20kh2, 10d6kh5mi2)
-export const diceWithOperatorRegex = new RegExp(`${ds}(${ows})*`, 'i');
+export const diceWithOperatorRegex = new RegExp(`${ds}(${ows})*`, "i");
 const dos = diceWithOperatorRegex.source;
 
 // Regex (ex: 10dswkh5)
-export const swDiceWithOperatorRegex = new RegExp(`${dsw}(?:${ows.replace(/\(/g, '(?:')})*`, 'i');
+export const swDiceWithOperatorRegex = new RegExp(`${dsw}(?:${ows.replace(/\(/g, "(?:")})*`, "i");
 
 // Regex (ex: d20, 2d10 + 5 + 1d6, 2d20kh2 + 5 + 1d6)
-export const coreRollExpressionRegex = new RegExp(`${dos}(\\s?[+-]\\s?((${dos})|\\d+))*`, 'i');
-export const rollExpressionRegex = new RegExp(`^${coreRollExpressionRegex.source}$`, 'i');
+export const coreRollExpressionRegex = new RegExp(`${dos}(\\s?[+-]\\s?((${dos})|\\d+))*`, "i");
+export const rollExpressionRegex = new RegExp(`^${coreRollExpressionRegex.source}$`, "i");

@@ -1,53 +1,51 @@
-import { operatorRerollAddRegex } from '../regex';
-import type { Operation } from '../types';
-import Operator from './Operator';
-import type { Selector } from '../Selector';
-import type Dice from '../Dice';
+import { operatorRerollAddRegex } from "../regex";
+import type { Operation } from "../types";
+import Operator from "./Operator";
+import type { Selector } from "../Selector";
+import type Dice from "../Dice";
 
 /**
  * Class representing a reroll and add operator.\
  * A reroll and add operator is used to explode (once) the first value from a given list filtered by the `selector`, then add the value of the new roll.
  */
 export default class OperatorRerollAdd extends Operator {
-  selector: Selector;
+	selector: Selector;
 
-  constructor(selector: Selector) {
-    super();
-    this.selector = selector;
-  }
+	constructor(selector: Selector) {
+		super();
+		this.selector = selector;
+	}
 
-  static isValidOperatorRerollAddExpression(value: string): boolean {
-    const regex = new RegExp(`^${operatorRerollAddRegex.source}$`, 'i');
-    return regex.test(value);
-  }
+	static isValidOperatorRerollAddExpression(value: string): boolean {
+		const regex = new RegExp(`^${operatorRerollAddRegex.source}$`, "i");
+		return regex.test(value);
+	}
 
-  executeOperation(rolls: number[], dice: Dice): Operation[] {
-    const result: Operation[] = [];
+	executeOperation(rolls: number[], dice: Dice): Operation[] {
+		const result: Operation[] = [];
 
-    const filteredDices = this.selector.filter(rolls);
+		const filteredDices = this.selector.filter(rolls);
 
-    const filteredIndex = filteredDices.length ? filteredDices[0].index : undefined;
+		const filteredIndex = filteredDices.length ? filteredDices[0].index : undefined;
 
-    result.push(
-      ...rolls.map((value, index) => (
-        {
-          value,
-          exploded: filteredIndex === index,
-        }
-      )),
-    );
+		result.push(
+			...rolls.map((value, index) => ({
+				value,
+				exploded: filteredIndex === index,
+			})),
+		);
 
-    if (filteredIndex !== undefined) {
-      const rerollDice: number = dice.rollOne();
-      result.splice(filteredIndex + 1, 0, {
-        value: rerollDice,
-      });
-    }
+		if (filteredIndex !== undefined) {
+			const rerollDice: number = dice.rollOne();
+			result.splice(filteredIndex + 1, 0, {
+				value: rerollDice,
+			});
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  toString(): string {
-    return `ra${this.selector.toString()}`;
-  }
+	toString(): string {
+		return `ra${this.selector.toString()}`;
+	}
 }

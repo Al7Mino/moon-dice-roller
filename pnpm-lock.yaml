@@ -51,9 +51,6 @@ importers:
         specifier: ^5.5.3
         version: 5.5.3
     devDependencies:
-      '@sapphire/prettier-config':
-        specifier: ^2.0.0
-        version: 2.0.0
       '@sapphire/ts-config':
         specifier: ^5.0.1
         version: 5.0.1
@@ -473,10 +470,6 @@ packages:
   '@sapphire/plugin-subcommands@6.0.3':
     resolution: {integrity: sha512-SLDlTjMrMpb3s89ZjrBvVbMWsXfNNciO6SnNQdKLKTUQwktaYxIdj+k3MmEWpN19i8W9ogRvIrLl0Hw20pPUng==}
     engines: {node: '>=v18', npm: '>=7'}
-
-  '@sapphire/prettier-config@2.0.0':
-    resolution: {integrity: sha512-Vie8KR5zQ6sbEP4+biW/IR7k55saGfZkTSuRlgvxCBKb4SBJdRWcOBI80i+JxMVIDDZKgXlgYnXEST+FgZiWXA==}
-    engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
 
   '@sapphire/ratelimits@2.4.9':
     resolution: {integrity: sha512-eEE385IrFsD90gg696MWNqbeDjo1ZgtBvL66BezIwJEwDguhLP5AVsBsT4uCacX/92aeHl8i2nVvtusIBXZNSg==}
@@ -2469,10 +2462,6 @@ snapshots:
     dependencies:
       '@sapphire/utilities': 3.16.2
       tslib: 2.6.3
-
-  '@sapphire/prettier-config@2.0.0':
-    dependencies:
-      prettier: 3.3.2
 
   '@sapphire/ratelimits@2.4.9': {}
 
