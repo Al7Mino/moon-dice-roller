@@ -5,6 +5,12 @@ import Operator from './Operator';
 import type { Selector } from '../Selector';
 import type Dice from '../Dice';
 
+/**
+ * Class representing a reroll operator.\
+ * A reroll operator is used to reroll values from a given list until their result is no more filtered by the `selector`.
+ * 
+ * *A limit to the number of reroll is set to prevent infinite loop.*
+ */
 export default class OperatorReroll extends Operator {
   selector: Selector;
   private readonly limit: number = 30;
@@ -62,6 +68,7 @@ export default class OperatorReroll extends Operator {
 
       result.splice(index + offset, 0, {
         value: rerollDice,
+        dropped: false,
       });
       offset++;
     }

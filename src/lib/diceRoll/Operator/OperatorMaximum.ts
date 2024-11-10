@@ -4,6 +4,10 @@ import type { Operation } from '../types';
 import Operator from './Operator';
 import { Selector, SelectorGreater, SelectorLiteral } from '../Selector';
 
+/**
+ * Class representing a maximum operator.\
+ * A maximum operator is used to set a maximum value to a given list. All values greater than `selector.value` are replaced by `selector.value`.
+ */
 export default class OperatorMaximum extends Operator {
   selector: Selector;
 

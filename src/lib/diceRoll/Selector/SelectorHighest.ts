@@ -1,12 +1,16 @@
 import { selectorHighestRegex } from '../regex';
 import Selector from './Selector';
 
+/**
+ * Class representing a highest selector.\
+ * A highest selector is used to keep the highest values from a given list. The number of highest values to keep is the selector's `value`.
+ */
 export default class SelectorHighest extends Selector {
   value: number;
 
   constructor(value: number) {
     super();
-    this.value = value;
+    this.value = Math.floor(value);
   }
 
   static isValidSelectorHighestExpression(value: string): boolean {
@@ -15,6 +19,9 @@ export default class SelectorHighest extends Selector {
   }
 
   private filterNMax(array: {value: number, index: number}[], n: number): {value: number, index: number}[] {
+    if (n < 1) {
+      return [];
+    }
     const maxValues: {value: number, index: number}[] = [];
     for (const element of array) {
       if (maxValues.length < n) {
@@ -22,12 +29,12 @@ export default class SelectorHighest extends Selector {
       } else {
         const min = Math.min(...maxValues.map((val) => val.value));
         if (element.value > min) {
-          const minIndex = maxValues.findIndex((val) => val.value === min);
+          const minIndex = maxValues.findLastIndex((val) => val.value === min);
           maxValues.splice(minIndex, 1, element);
         }
       }
     }
-    return maxValues;
+    return maxValues.sort((a, b) => a.index - b.index);
   }
 
   filter(dices: number[]): {value: number, index: number}[] {

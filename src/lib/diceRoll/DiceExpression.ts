@@ -14,7 +14,7 @@ export default class DiceExpression {
     }
   }
 
-  static isDiceExpression(value: any): boolean {
+  static isDiceExpression(value: any): value is DiceExpression {
     return value instanceof DiceExpression;
   }
 

@@ -4,11 +4,11 @@ export default class Dice {
   num: number;
   sides: number;
   constructor(sides: number, num?: number) {
-    this.sides = sides;
-    this.num = num && num > 0 ? num : 1;
+    this.sides = sides > 0 ? Math.floor(sides) : 6;
+    this.num = num && num > 0 ? Math.floor(num) : 1;
   }
 
-  static isDice(value: any): boolean {
+  static isDice(value: any): value is Dice {
     return value instanceof Dice;
   }
 
@@ -18,7 +18,8 @@ export default class Dice {
   }
 
   rollOne(): number {
-    return Math.ceil(Math.random() * this.sides);
+    const rand = Math.random();
+    return Math.ceil(rand * this.sides) || 1;
   }
 
   roll(): number[] {

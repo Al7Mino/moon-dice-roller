@@ -1,6 +1,10 @@
 import { selectorLowerRegex } from '../regex';
 import Selector from './Selector';
 
+/**
+ * Class representing a lower selector.\
+ * A lower selector is used to keep all values from a given list that are lower than the selector's `value`.
+ */
 export default class SelectorLower extends Selector {
   value: number;
 

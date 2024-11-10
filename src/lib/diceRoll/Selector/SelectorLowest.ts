@@ -1,12 +1,16 @@
 import { selectorLowestRegex } from '../regex';
 import Selector from './Selector';
 
+/**
+ * Class representing a lowest selector.\
+ * A lowest selector is used to keep the lowest values from a given list. The number of lowest values to keep is the selector's `value`.
+ */
 export default class SelectorLowest extends Selector {
   value: number;
 
   constructor(value: number) {
     super();
-    this.value = value;
+    this.value = Math.floor(value);
   }
 
   static isValidSelectorLowestExpression(value: string): boolean {
@@ -15,6 +19,9 @@ export default class SelectorLowest extends Selector {
   }
 
   private filterNMin(array: {value: number, index: number}[], n: number): {value: number, index: number}[] {
+    if (n < 1) {
+      return [];
+    }
     const minValues: {value: number, index: number}[] = [];
     for (const element of array) {
       if (minValues.length < n) {
@@ -22,12 +29,12 @@ export default class SelectorLowest extends Selector {
       } else {
         const max = Math.max(...minValues.map((val) => val.value));
         if (element.value < max) {
-          const maxIndex = minValues.findIndex((val) => val.value === max);
+          const maxIndex = minValues.findLastIndex((val) => val.value === max);
           minValues.splice(maxIndex, 1, element);
         }
       }
     }
-    return minValues;
+    return minValues.sort((a, b) => a.index - b.index);
   }
 
   filter(dices: number[]): {value: number, index: number}[] {

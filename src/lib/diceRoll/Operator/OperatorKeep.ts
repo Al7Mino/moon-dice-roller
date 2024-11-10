@@ -3,6 +3,10 @@ import type { Operation } from '../types';
 import Operator from './Operator';
 import type { Selector } from '../Selector';
 
+/**
+ * Class representing a keep operator.\
+ * A keep operator is used to keep only the values from a given list that are filtered by the `selector`.
+ */
 export default class OperatorKeep extends Operator {
   selector: Selector;
 

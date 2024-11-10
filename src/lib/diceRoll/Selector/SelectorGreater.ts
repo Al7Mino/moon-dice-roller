@@ -1,6 +1,10 @@
 import { selectorGreaterRegex } from '../regex';
 import Selector from './Selector';
 
+/**
+ * Class representing a greater selector.\
+ * A greater selector is used to keep all values from a given list that are greater than the selector's `value`.
+ */
 export default class SelectorGreater extends Selector {
   value: number;
 

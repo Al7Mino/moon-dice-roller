@@ -4,6 +4,10 @@ import Operator from './Operator';
 import type { Selector } from '../Selector';
 import type Dice from '../Dice';
 
+/**
+ * Class representing a reroll once operator.\
+ * A reroll once operator is used to reroll values from a given list once.
+ */
 export default class OperatorRerollOnce extends Operator {
   selector: Selector;
 
@@ -39,6 +43,7 @@ export default class OperatorRerollOnce extends Operator {
       const rerollDice = dice.rollOne();
       result.splice(index + offset, 0, {
         value: rerollDice,
+        dropped: false,
       });
       offset++;
     }

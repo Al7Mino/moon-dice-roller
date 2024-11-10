@@ -4,6 +4,10 @@ import Operator from './Operator';
 import type { Selector } from '../Selector';
 import type Dice from '../Dice';
 
+/**
+ * Class representing a reroll and add operator.\
+ * A reroll and add operator is used to explode (once) the first value from a given list filtered by the `selector`, then add the value of the new roll.
+ */
 export default class OperatorRerollAdd extends Operator {
   selector: Selector;
 

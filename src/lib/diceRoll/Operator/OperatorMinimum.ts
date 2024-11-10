@@ -4,6 +4,10 @@ import type { Operation } from '../types';
 import Operator from './Operator';
 import { Selector, SelectorLiteral, SelectorLower } from '../Selector';
 
+/**
+ * Class representing a minimum operator.\
+ * A minimum operator is used to set a minimum value to a given list. All values lower than `selector.value` are replaced by `selector.value`.
+ */
 export default class OperatorMinimum extends Operator {
   selector: Selector;
 

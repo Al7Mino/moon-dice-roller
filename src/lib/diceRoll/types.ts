@@ -1,12 +1,12 @@
-export interface Operation {
+export type Operation = {
   previousValue?: number,
   value: number,
   dropped?: boolean,
   alter?: boolean,
-  exploded?: boolean
+  exploded?: boolean,
 }
 
-export interface DetailedExpression {
+export type DetailedExpression = {
   expression: string,
-  details?: Operation[][];
+  details?: Operation[][],
 }
