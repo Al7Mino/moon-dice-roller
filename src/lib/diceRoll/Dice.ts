@@ -18,7 +18,8 @@ export default class Dice {
   }
 
   rollOne(): number {
-    return Math.ceil(Math.random() * this.sides);
+    const rand = Math.random();
+    return Math.ceil(rand * this.sides) || 1;
   }
 
   roll(): number[] {

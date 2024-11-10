@@ -29,15 +29,12 @@ export default class SelectorLowest extends Selector {
       } else {
         const max = Math.max(...minValues.map((val) => val.value));
         if (element.value < max) {
-          // Reverse max values to get the last index (instead of first)
-          // This way, it's easier to know what happened
-          const reversedMaxIndex = minValues.toReversed().findIndex((val) => val.value === max);
-          const maxIndex = Math.abs(reversedMaxIndex - minValues.length + 1);
+          const maxIndex = minValues.findLastIndex((val) => val.value === max);
           minValues.splice(maxIndex, 1, element);
         }
       }
     }
-    return minValues;
+    return minValues.sort((a, b) => a.index - b.index);
   }
 
   filter(dices: number[]): {value: number, index: number}[] {

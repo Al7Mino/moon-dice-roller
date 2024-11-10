@@ -70,6 +70,7 @@ export default class OperatorExplode extends Operator {
 
       result.splice(index + offset, 0, {
         value: rerollDice,
+        exploded: false,
       });
       offset++;
     }

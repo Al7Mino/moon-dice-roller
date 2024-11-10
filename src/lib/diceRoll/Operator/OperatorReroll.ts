@@ -68,6 +68,7 @@ export default class OperatorReroll extends Operator {
 
       result.splice(index + offset, 0, {
         value: rerollDice,
+        dropped: false,
       });
       offset++;
     }

@@ -43,6 +43,7 @@ export default class OperatorRerollOnce extends Operator {
       const rerollDice = dice.rollOne();
       result.splice(index + offset, 0, {
         value: rerollDice,
+        dropped: false,
       });
       offset++;
     }

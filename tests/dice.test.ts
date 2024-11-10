@@ -20,7 +20,7 @@ describe("Validity of several dice value expressions", () => {
             [floatDiceString, false],
             [negativeDiceString, false],
         ])("%s is %s", (value, expected) => {
-            expected ? expect(Dice.isValidDiceExpression(value)).toBeTruthy() : expect(Dice.isValidDiceExpression(value)).toBeFalsy();
+            expected ? expect(Dice.isValidDiceExpression(value)).toBeTrue() : expect(Dice.isValidDiceExpression(value)).toBeFalse();
         });
     });
 
@@ -32,7 +32,7 @@ describe("Validity of several dice value expressions", () => {
             {label: floatDiceString, value: floatDice, expected: true, num: 1, sides: 10},
             {label: negativeDiceString, value: negativeDice, expected: true, num: 1, sides: 6},
         ])("Dice $label is $expected, with num = $num and sides = $sides", ({value, expected, num, sides}) => {
-            expected ? expect(Dice.isDice(value)).toBeTruthy() : expect(Dice.isDice(value)).toBeFalsy();
+            expected ? expect(Dice.isDice(value)).toBeTrue() : expect(Dice.isDice(value)).toBeFalse();
             if (num !== undefined) {
                 expect(value.num).toBe(num);
             }

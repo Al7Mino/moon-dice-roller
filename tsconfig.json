@@ -1,7 +1,7 @@
 {
 	"extends": ["@sapphire/ts-config", "@sapphire/ts-config/extra-strict", "@sapphire/ts-config/decorators"],
 	"compilerOptions": {
-		"rootDir": "src",
+		"rootDir": ".",
 		"outDir": "dist",
 		"tsBuildInfoFile": "dist/.tsbuildinfo",
 		"baseUrl": "src",
@@ -12,6 +12,7 @@
 		},
 		"skipLibCheck": true // Workaround caused by types problem in discord.js and sapphire libraries
 	},
-	"include": ["src", "tests/global.d.ts"],
-	"files": ["tests/global.d.ts"]
+	"files": ["node_modules/jest-extended/types/index.d.ts"],
+	"include": ["src", "tests/**/*"],
+	"exclude": ["node_modules"]
 }
